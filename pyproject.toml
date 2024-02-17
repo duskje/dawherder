@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "python-project-template"
+version = "0.1.0"
+description = ""
+authors = ["duskje <duskje@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+loguru = "*"
+python-dotenv = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "*"
+sphinx = "*"
+pytest = "*"
+autopep8 = "*"
+mypy = "*"
+setuptools = "*"
+
+[build-system]
+requires = ["setuptools", "poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+check = 'mypy src/main.py'
+_start = 'python src/main.py'
+
+start = ['check', '_start']
+
+pretty = 'python -m autopep8 src/'
+test = 'pytest tests/'
+
+[tool.autopep8]
+max_line_length = 128
+in-place = true
+recursive = true
+aggressive = 2
+
+[tool.pyright]
+include = ['src']
+reportMissingImports = true
+reportMissingTypeStubs = false
+
